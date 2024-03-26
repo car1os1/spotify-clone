@@ -1,7 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { playlists } from "@/lib/data";
-import PlayListItemCard from "@/components/PlayListItemCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+import PlayListItemCard from "../../components/PlayListItemCard.astro";
+import { allPlaylists, playlists, songs } from "../..//lib/data";
+
+const { id } = Astro.params;
+const playlist = allPlaylists.find((playlist) => playlist.id === id);
+const playListSongs = songs.filter(
+    (song) => song.albumId === playlist?.albumId,
+);
 ---
 
 <Layout title="Spot">
